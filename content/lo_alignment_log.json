@@ -1,0 +1,61 @@
+[
+  {
+    "learning_outcome": "LO1: Demonstrate an understanding of the purpose uses of...",
+    "canvas_outcome_id": 1766,
+    "aligned_assignments": [],
+    "aligned_quizzes": []
+  },
+  {
+    "learning_outcome": "LO2: Use common HTML elements and attributes in web pages...",
+    "canvas_outcome_id": 1767,
+    "aligned_assignments": [],
+    "aligned_quizzes": []
+  },
+  {
+    "learning_outcome": "LO3: Format web pages using CSS rules as well as flexbox...",
+    "canvas_outcome_id": 1768,
+    "aligned_assignments": [
+      {
+        "name": "Lab 6 Submission",
+        "id": 22045
+      }
+    ],
+    "aligned_quizzes": []
+  },
+  {
+    "learning_outcome": "LO4: Plan web site structure, design navigation and...",
+    "canvas_outcome_id": 1769,
+    "aligned_assignments": [],
+    "aligned_quizzes": []
+  },
+  {
+    "learning_outcome": "LO5: Publish to a web host using FTP or other technologies.",
+    "canvas_outcome_id": 1770,
+    "aligned_assignments": [],
+    "aligned_quizzes": []
+  },
+  {
+    "learning_outcome": "LO6: Create forms and add common types of input elements.",
+    "canvas_outcome_id": 1771,
+    "aligned_assignments": [],
+    "aligned_quizzes": []
+  },
+  {
+    "learning_outcome": "LO7: Add multimedia elements such as audio and video to web...",
+    "canvas_outcome_id": 1772,
+    "aligned_assignments": [],
+    "aligned_quizzes": []
+  },
+  {
+    "learning_outcome": "LO8: Use and format tables in web pages.",
+    "canvas_outcome_id": 1773,
+    "aligned_assignments": [],
+    "aligned_quizzes": []
+  },
+  {
+    "learning_outcome": "LO9: Evaluate your web site implementation work and that of...",
+    "canvas_outcome_id": 1774,
+    "aligned_assignments": [],
+    "aligned_quizzes": []
+  }
+]
