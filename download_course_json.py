@@ -11,7 +11,7 @@ the contents of the course into a single JSON file:
 6. Quizzes
 7. Files (metadata only, not the file contents themselves)
 
-Output: course_<COURSE_ID>_<timestamp>.json in the current directory.
+Output: downloads/course_<COURSE_ID>_<timestamp>.json
 """
 import os
 import json
@@ -219,9 +219,11 @@ def main():
         "files": download_section("files (metadata)", lambda: get_files(course)),
     }
 
-    # Write everything to a JSON file
+    # Write everything to a JSON file in the downloads directory
+    output_dir = "downloads"
+    os.makedirs(output_dir, exist_ok=True)
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    output_file = f"course_{COURSE_ID}_{timestamp}.json"
+    output_file = os.path.join(output_dir, f"course_{COURSE_ID}_{timestamp}.json")
     with open(output_file, "w", encoding="utf-8") as f:
         json.dump(course_data, f, indent=2, ensure_ascii=False)
 
