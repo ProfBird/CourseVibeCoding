@@ -10,36 +10,54 @@ creates two new modules at the bottom of the Modules page, one per topic:
 Both are created UNPUBLISHED, so they are hidden from students. Module 7 is
 left completely untouched - nothing is moved, edited, or deleted.
 
-Items that genuinely cover both topics (Lab 6, the South India demo site) are
-added to both new modules. The combined CSS Handbook reading page is split so
-each module lists only its own chapter. Section labels ("Reading", "Lecture
-Notes", ...) are SubHeader module items rather than the standalone header Pages
-Module 7 uses, matching the newer convention in Module 8 and "Advanced CSS".
+The reading, lecture notes, and example content is fixed (copied/adapted from
+Module 7, split by topic). The week number, the lab assignment, and an
+optional quiz are NOT hardcoded - when you run with --apply you're prompted
+for each, separately per module, so the same script can be reused for other
+weeks without editing the code. The week number you enter is substituted into
+whatever text was copied verbatim from Module 7 that references a week (the
+lecture recording titles); it's not added anywhere else.
 
-A few Canvas course-design conventions are applied on top of the Module 7
-content:
+The assignment and quiz are real, new Canvas objects, not links to existing
+ones: you pick an existing assignment/quiz as a template, type a new name,
+and the script duplicates it via Canvas's own duplicate-assignment endpoint
+(the same mechanism behind the "Duplicate" button in Canvas's UI - confirmed
+to work on this course's New Quizzes, not just classic assignments) and
+renames the copy. The copy's due date, if the template had one, is shifted by
+(this module's week number - 7) weeks - 7 because Module 7, the module this
+script splits, is itself "Week 7" per its own overview page - so the copy
+lands on the same weekday/time in this module's week.
+
+A few Canvas course-design conventions are applied on top of the content:
   - Items are indented under their SubHeader for visual grouping.
-  - Each module requires viewing its overview page and submitting Lab 6 to
-    be marked complete.
+  - Each module requires viewing its overview page; if you pick an
+    assignment, submitting it is also required to mark the module complete.
   - The Flexbox module is locked behind the Grid module's completion
     (prerequisite_module_ids), so students see them in order once published.
-  - Each overview page states the estimated time and completion requirements.
+  - Each overview page states the estimated time to complete the module.
 
-  Dry run (default):
-    Prints every module, page, and item that would be created. Makes NO
-    connection to Canvas and NO changes whatsoever.
+  Offline preview (default):
+    Prints the structure that will be created - pages, links, sections - with
+    placeholders for the week number, assignment, and quiz, since those are
+    only known once you answer the prompts. Makes NO connection to Canvas and
+    NO changes whatsoever.
 
   Apply mode (--apply):
-    Connects to Canvas, shows the same plan, then asks for confirmation
-    before creating anything.
+    Connects to Canvas, asks you to confirm, then for each module prompts for
+    its week number, then a template + new name for its assignment (numbered
+    list, blank to skip), and the same for an optional quiz. This course's
+    quizzes are Canvas New Quizzes, which the API exposes as regular
+    assignments, so both prompts list the same assignments.
 
 Usage:
-    python split_grid_flexbox_modules.py           # dry run - preview only
-    python split_grid_flexbox_modules.py --apply   # connect, confirm, create
+    python split_grid_flexbox_modules.py           # offline structural preview
+    python split_grid_flexbox_modules.py --apply   # connect, prompt per module, create
 """
 import os
 import sys
+import time
 import argparse
+from datetime import datetime, timedelta
 from dotenv import load_dotenv
 from canvasapi import Canvas
 
@@ -59,20 +77,26 @@ CANVAS_TOKEN = os.getenv('CANVAS_TOKEN')
 COURSE_ID_STR = os.getenv('COURSE_ID')
 
 # Canvas content IDs carried over from Module 7. These are course-specific and
-# were read from the course export in downloads/.
-LAB6_ASSIGNMENT_ID = 22045      # "Lab 6 Submission"
+# were read from the course export in downloads/. The lab assignment and any
+# quiz are NOT here - they're chosen interactively per module in --apply mode.
 GRID_DEMOS_FILE_ID = 73039      # "CssGridDemos.zip"
 GRID_IMAGE_FILE_ID = 73057      # grid-paper illustration used on the overview page
 
 LAB6_INSTRUCTIONS_URL = "https://lcc-cit.github.io/CIS195-CourseMaterials/LabStarters/Lab06/Lab6Instructions_8wk.html"
 SOUTH_INDIA_DEMO_URL = "https://lcc-cit.github.io/CIS195-Demos/Unit05_GridAndFlexbox/Finished/"
 
+# Module 7 ("CSS Grid and Flex Box"), the module this script splits, is itself
+# "Week 7" per its own overview page banner. Due dates on duplicated
+# assignments/quizzes are shifted by (target module's week - 7) weeks, so a
+# template's due date lands on the same weekday/time in the new week.
+SOURCE_MODULE_WEEK = 7
+
 
 # ---------------------------------------------------------------------------
 # Page bodies for the new modules
 #
 # The overview pages are adapted from the Module 7 overview page, minus its
-# week/date banner - these modules aren't tied to a specific week.
+# week/date banner - these modules aren't tied to a fixed week in the code.
 # The reading pages split the combined "Selected Sections of The CSS Handbook"
 # page into its Grid chapter and its Flexbox chapter.
 # ---------------------------------------------------------------------------
@@ -92,9 +116,8 @@ GRID_OVERVIEW_BODY = f"""<div class="summary expanded">
       <li style="text-align: left;">Use the <code>gap</code> property to space grid items</li>
       <li style="text-align: left;">Choose CSS Grid over other layout techniques when it is the better fit</li>
     </ul>
-    <p dir="ltr" style="text-align: left;"><strong>Estimated time:</strong> 2-3 hours (reading, lecture notes, and Lab 6).</p>
-    <p dir="ltr" style="text-align: left;"><strong>To complete this module:</strong> view this page and submit Lab 6.</p>
-    <p dir="ltr" style="text-align: left;"><em>Note: Lab 6 covers both Grid and Flexbox. It appears in both modules for convenience, but you only need to submit it once.</em></p>
+    <p dir="ltr" style="text-align: left;"><strong>Estimated time:</strong> 2-3 hours (reading, lecture notes, and this module's assignment).</p>
+    <p dir="ltr" style="text-align: left;"><strong>To complete this module:</strong> view this page, then check the Activities section below for this module's assignment (and quiz, if one is listed).</p>
   </div>
 </div>"""
 
@@ -109,9 +132,8 @@ FLEXBOX_OVERVIEW_BODY = """<div class="summary expanded">
       <li style="text-align: left;">Control how flex items grow, shrink, and wrap</li>
       <li style="text-align: left;">Choose CSS Flexbox over other layout techniques when it is the better fit</li>
     </ul>
-    <p dir="ltr" style="text-align: left;"><strong>Estimated time:</strong> 2-3 hours (reading, lecture notes, and Lab 6).</p>
-    <p dir="ltr" style="text-align: left;"><strong>To complete this module:</strong> view this page and submit Lab 6.</p>
-    <p dir="ltr" style="text-align: left;"><em>Note: Lab 6 covers both Grid and Flexbox. It appears in both modules for convenience, but you only need to submit it once.</em></p>
+    <p dir="ltr" style="text-align: left;"><strong>Estimated time:</strong> 2-3 hours (reading, lecture notes, and this module's assignment).</p>
+    <p dir="ltr" style="text-align: left;"><strong>To complete this module:</strong> view this page, then check the Activities section below for this module's assignment (and quiz, if one is listed).</p>
   </div>
 </div>"""
 
@@ -130,64 +152,54 @@ FLEXBOX_READING_BODY = """<p>Selected Sections of <a href="https://flaviocopes.c
 
 
 # ---------------------------------------------------------------------------
-# The two modules, described as data.
+# The two modules, described as templates.
 #
-# Each item is a dict matching the Canvas module-item API. Items of type "Page"
-# carry an extra "body" key: the page is created first, then the module item is
-# pointed at it by page_url. "require" marks a completion requirement
-# ("must_view" or "must_submit"); items without it have none. Items are
-# indented one level under their most recent SubHeader (see compute_indents).
+# Everything here is fixed content copied/adapted from Module 7. The week
+# number, assignment, and quiz are filled in at runtime by resolve_module_items
+# - "{week_label}" in recording_title_template is the only place the week
+# number is substituted, since that's the only text copied verbatim from
+# Module 7 that referenced a week ("Week 7, Tuesday/Thursday lecture recording").
 # ---------------------------------------------------------------------------
 
-MODULES = [
+MODULE_TEMPLATES = [
     {
         "name": "CSS Grid",
-        "items": [
-            {"type": "Page", "title": "CSS Grid", "body": GRID_OVERVIEW_BODY, "require": "must_view"},
-            {"type": "SubHeader", "title": "Reading"},
-            {"type": "Page", "title": "Reading: CSS Grid", "body": GRID_READING_BODY},
-            {"type": "SubHeader", "title": "Lecture Notes"},
-            {"type": "ExternalUrl", "title": "Positioning with CSS Grid",
-             "external_url": "https://lcc-cit.github.io/CIS195-CourseMaterials/LectureNotes/CIS195-LN-W06-D2A-CssGrid.html"},
-            {"type": "SubHeader", "title": "Recordings"},
-            {"type": "ExternalUrl", "title": "Week 7, Tuesday lecture recording",
-             "external_url": "https://lanecc.zoom.us/rec/share/Uc7MV58IKxT0WjJJJGeNLpXIVXDDkA-gCDXvJcvC1Ja-ZCdvSgl_cnOx9q8mzx3k.NoCD0e_5dhbhO6T_"},
-            {"type": "SubHeader", "title": "Examples"},
+        "overview_title": "CSS Grid",
+        "overview_body": GRID_OVERVIEW_BODY,
+        "reading_title": "Reading: CSS Grid",
+        "reading_body": GRID_READING_BODY,
+        "lecture_title": "Positioning with CSS Grid",
+        "lecture_url": "https://lcc-cit.github.io/CIS195-CourseMaterials/LectureNotes/CIS195-LN-W06-D2A-CssGrid.html",
+        "recording_title_template": "{week_label}, Tuesday lecture recording",
+        "recording_url": "https://lanecc.zoom.us/rec/share/Uc7MV58IKxT0WjJJJGeNLpXIVXDDkA-gCDXvJcvC1Ja-ZCdvSgl_cnOx9q8mzx3k.NoCD0e_5dhbhO6T_",
+        "extra_examples": [
             {"type": "ExternalUrl", "title": "South India Site with Grid and Flexbox",
              "external_url": SOUTH_INDIA_DEMO_URL},
             {"type": "ExternalUrl", "title": "CSS Grid Examples",
              "external_url": "https://lcc-cit.github.io/CIS195-CourseMaterials/Examples/LayoutDemos/cssGridExample.html"},
             {"type": "File", "title": "In-class grid demos—summer 2023",
              "content_id": GRID_DEMOS_FILE_ID},
-            {"type": "SubHeader", "title": "Activities"},
-            {"type": "ExternalUrl", "title": "Lab 6 Instructions",
-             "external_url": LAB6_INSTRUCTIONS_URL},
-            {"type": "Assignment", "title": "Lab 6 Submission",
-             "content_id": LAB6_ASSIGNMENT_ID, "require": "must_submit"},
         ],
+        "lab_instructions_title": "Lab 6 Instructions",
+        "lab_instructions_url": LAB6_INSTRUCTIONS_URL,
     },
     {
         "name": "CSS Flexbox",
         "prerequisite": "CSS Grid",
-        "items": [
-            {"type": "Page", "title": "CSS Flexbox", "body": FLEXBOX_OVERVIEW_BODY, "require": "must_view"},
-            {"type": "SubHeader", "title": "Reading"},
-            {"type": "Page", "title": "Reading: CSS Flexbox", "body": FLEXBOX_READING_BODY},
-            {"type": "SubHeader", "title": "Lecture Notes"},
-            {"type": "ExternalUrl", "title": "Positioning with CSS Flexbox",
-             "external_url": "https://lcc-cit.github.io/CIS195-CourseMaterials/LectureNotes/CIS195-LN-W06-D2B-CssFlexBox.html"},
-            {"type": "SubHeader", "title": "Recordings"},
-            {"type": "ExternalUrl", "title": "Week 7, Thursday lecture recording",
-             "external_url": "https://lanecc.zoom.us/rec/share/av6CumGQEahnrqY1jrP-Yr708ZTv7QrsKL9b12LoxgsMIAObMeaCIVKp47VLSB0n.URz-Xhqi7m8h2cqx"},
-            {"type": "SubHeader", "title": "Examples"},
+        "overview_title": "CSS Flexbox",
+        "overview_body": FLEXBOX_OVERVIEW_BODY,
+        "reading_title": "Reading: CSS Flexbox",
+        "reading_body": FLEXBOX_READING_BODY,
+        "lecture_title": "Positioning with CSS Flexbox",
+        "lecture_url": "https://lcc-cit.github.io/CIS195-CourseMaterials/LectureNotes/CIS195-LN-W06-D2B-CssFlexBox.html",
+        "recording_title_template": "{week_label}, Thursday lecture recording",
+        "recording_url": "https://lanecc.zoom.us/rec/share/av6CumGQEahnrqY1jrP-Yr708ZTv7QrsKL9b12LoxgsMIAObMeaCIVKp47VLSB0n.URz-Xhqi7m8h2cqx",
+        "extra_examples": [
             {"type": "ExternalUrl", "title": "South India Site with Grid and Flexbox",
              "external_url": SOUTH_INDIA_DEMO_URL},
-            {"type": "SubHeader", "title": "Activities"},
-            {"type": "ExternalUrl", "title": "Lab 6 Instructions",
-             "external_url": LAB6_INSTRUCTIONS_URL},
-            {"type": "Assignment", "title": "Lab 6 Submission",
-             "content_id": LAB6_ASSIGNMENT_ID, "require": "must_submit"},
         ],
+        "lab_instructions_title": "Lab 6 Instructions",
+        "lab_instructions_url": LAB6_INSTRUCTIONS_URL,
     },
 ]
 
@@ -214,30 +226,185 @@ def confirm(prompt):
     return answer in ("y", "yes")
 
 
-def print_plan(dry_run):
+def choose_one(items, label_fn, question):
+    """Show a numbered list and ask for exactly one choice, or blank to skip.
+    Returns the chosen item, or None if skipped."""
+    if not items:
+        print("   (Nothing available to choose from.)")
+        return None
+    for i, item in enumerate(items, start=1):
+        print(f"     {i}. {label_fn(item)}")
+    while True:
+        raw = input(f"   {question} (blank to skip): ").strip()
+        if raw == "":
+            return None
+        if raw.isdigit() and 1 <= int(raw) <= len(items):
+            return items[int(raw) - 1]
+        print("   Please enter a valid number from the list, or leave blank to skip.")
+
+
+def choose_week_number(module_name, used_weeks):
+    """Ask for a whole number not already used by another module in this run."""
+    while True:
+        raw = input(f"   Week number for '{module_name}' (e.g. 7): ").strip()
+        if not raw.isdigit():
+            print("   Please enter a whole number.")
+            continue
+        week = int(raw)
+        if week in used_weeks:
+            print(f"   Week {week} was already used for another module in this run - "
+                  "please enter a different week.")
+            continue
+        used_weeks.add(week)
+        return week
+
+
+def choose_name(prompt_text, used_names):
+    """Ask for a non-empty name that doesn't collide (case-insensitively) with
+    an existing Canvas assignment/quiz or a name already chosen in this run."""
+    while True:
+        raw = input(f"   {prompt_text}: ").strip()
+        if not raw:
+            print("   Please enter a name.")
+            continue
+        if raw.lower() in used_names:
+            print(f"   '{raw}' is already in use (an existing assignment/quiz, or a name "
+                  "you already chose in this run) - please enter a different name.")
+            continue
+        used_names.add(raw.lower())
+        return raw
+
+
+def shifted_due_at(original_due_at, target_week):
+    """Shift an ISO8601 due date by (target_week - SOURCE_MODULE_WEEK) whole
+    weeks, preserving the weekday and time of day. None if there's nothing to
+    shift (the template had no due date)."""
+    if not original_due_at:
+        return None
+    dt = datetime.strptime(original_due_at, "%Y-%m-%dT%H:%M:%SZ")
+    shifted = dt + timedelta(weeks=(target_week - SOURCE_MODULE_WEEK))
+    return shifted.strftime("%Y-%m-%dT%H:%M:%SZ")
+
+
+def duplicate_and_rename(course, template_obj, new_name, target_week):
+    """Duplicate an existing assignment/quiz via Canvas's duplicate-assignment
+    endpoint (not wrapped by canvasapi, so called directly), wait for the copy
+    to finish - Canvas does this asynchronously for New Quizzes - then rename
+    it and shift its due date. Returns the resulting Assignment."""
+    resp = course._requester.request(
+        "POST", f"courses/{course.id}/assignments/{template_obj.id}/duplicate"
+    )
+    new_id = resp.json()["id"]
+
+    duplicate = course.get_assignment(new_id)
+    for _ in range(15):
+        if duplicate.workflow_state != "duplicating":
+            break
+        time.sleep(2)
+        duplicate = course.get_assignment(new_id)
+    else:
+        print(f"      ⚠️  Still copying in Canvas after 30s - it will finish shortly in the background.")
+
+    edits = {"name": new_name}
+    new_due = shifted_due_at(getattr(template_obj, "due_at", None), target_week)
+    if new_due:
+        edits["due_at"] = new_due
+
+    return duplicate.edit(assignment=edits)
+
+
+def resolve_module_items(course, template, assignments, used_weeks, used_names):
+    """Prompt for this module's week number, assignment, and optional quiz,
+    then build the final list of module items from the template. Called once
+    per module, so Grid and Flexbox can get different answers.
+
+    used_weeks and used_names are shared across all modules processed in this
+    run, so a week number or a new assignment/quiz name can't be entered
+    twice - and used_names starts pre-loaded with every existing Canvas
+    assignment/quiz name, so a new one can't collide with those either.
+    """
+    print(f"\n--- Configuring '{template['name']}' ---")
+    week = choose_week_number(template["name"], used_weeks)
+    week_label = f"Week {week}"
+
+    print("   Assignment (pick an existing one to duplicate as the template for this module's lab):")
+    assignment_template = choose_one(assignments, lambda a: a.name, "Choose a template assignment #")
+    assignment = None
+    if assignment_template is not None:
+        new_name = choose_name("New name for the duplicated assignment", used_names)
+        assignment = duplicate_and_rename(course, assignment_template, new_name, week)
+        print(f"      ✅ Duplicated '{assignment_template.name}' -> '{assignment.name}' (id {assignment.id})")
+
+    print("   Quiz (optional - duplicated the same way; this course's quizzes are New Quizzes, "
+          "listed among the assignments above):")
+    quiz_template = choose_one(assignments, lambda a: a.name, "Choose a template quiz #")
+    quiz = None
+    if quiz_template is not None:
+        new_name = choose_name("New name for the duplicated quiz", used_names)
+        quiz = duplicate_and_rename(course, quiz_template, new_name, week)
+        print(f"      ✅ Duplicated '{quiz_template.name}' -> '{quiz.name}' (id {quiz.id})")
+
+    items = [
+        {"type": "Page", "title": template["overview_title"], "body": template["overview_body"],
+         "require": "must_view"},
+        {"type": "SubHeader", "title": "Reading"},
+        {"type": "Page", "title": template["reading_title"], "body": template["reading_body"]},
+        {"type": "SubHeader", "title": "Lecture Notes"},
+        {"type": "ExternalUrl", "title": template["lecture_title"], "external_url": template["lecture_url"]},
+        {"type": "SubHeader", "title": "Recordings"},
+        {"type": "ExternalUrl",
+         "title": template["recording_title_template"].format(week_label=week_label),
+         "external_url": template["recording_url"]},
+        {"type": "SubHeader", "title": "Examples"},
+        *template["extra_examples"],
+    ]
+
+    if quiz is not None:
+        items.append({"type": "SubHeader", "title": "Quiz"})
+        items.append({"type": "Assignment", "title": quiz.name, "content_id": quiz.id})
+
+    items.append({"type": "SubHeader", "title": "Activities"})
+    items.append({"type": "ExternalUrl", "title": template["lab_instructions_title"],
+                  "external_url": template["lab_instructions_url"]})
+    if assignment is not None:
+        items.append({"type": "Assignment", "title": assignment.name, "content_id": assignment.id,
+                      "require": "must_submit"})
+    else:
+        print("   ⚠️  No assignment selected - Activities will only include the instructions link.")
+
+    return items
+
+
+def print_template_plan():
     print("\n" + "=" * 60)
-    print("DRY RUN - no changes will be made" if dry_run else "PLANNED CHANGES")
+    print("OFFLINE PREVIEW - no connection to Canvas, no changes will be made")
     print("=" * 60)
-    for module in MODULES:
-        pages = [i for i in module["items"] if i["type"] == "Page"]
-        print(f"\n📦 New module: {module['name']}  (unpublished - hidden from students)")
-        print(f"   Position: bottom of the Modules page")
-        if module.get("prerequisite"):
-            print(f"   🔒 Locked until '{module['prerequisite']}' is completed")
-        print(f"   New pages to create: {len(pages)} (also unpublished)")
-        print(f"   Items: {len(module['items'])}")
-        indents = compute_indents(module["items"])
-        for n, (item, indent) in enumerate(zip(module["items"], indents), start=1):
-            detail = item.get("external_url") or (
-                f"content_id={item['content_id']}" if "content_id" in item else ""
-            )
-            if item["type"] == "Page":
-                detail = "new page"
-            if item.get("require"):
-                detail = (detail + " | " if detail else "") + f"requirement: {item['require']}"
-            pad = "  " * indent
-            label = f"{n:>3}. {pad}[{item['type']}] {item['title']}"
-            print(f"      {label}" + (f"\n           {detail}" if detail else ""))
+    for template in MODULE_TEMPLATES:
+        print(f"\n📦 New module: {template['name']}  (unpublished - hidden from students)")
+        print("   Position: bottom of the Modules page")
+        if template.get("prerequisite"):
+            print(f"   🔒 Will be locked until '{template['prerequisite']}' is completed")
+        print("   New pages to create: 2 (also unpublished)")
+        print("   Structure (week number, and a template + new name for the assignment/quiz, are")
+        print("   chosen when you run --apply; assignment and quiz are NEW Canvas objects, duplicated")
+        print("   from whatever existing ones you pick as templates):")
+        print(f"     [Page] {template['overview_title']}  (requirement: must_view)")
+        print("     [SubHeader] Reading")
+        print(f"       [Page] {template['reading_title']}")
+        print("     [SubHeader] Lecture Notes")
+        print(f"       [ExternalUrl] {template['lecture_title']}")
+        print("     [SubHeader] Recordings")
+        recording_suffix = template["recording_title_template"].split("}, ", 1)[1]
+        print(f"       [ExternalUrl] <Week N>, {recording_suffix}")
+        print("     [SubHeader] Examples")
+        for extra in template["extra_examples"]:
+            print(f"       [{extra['type']}] {extra['title']}")
+        print("     [SubHeader] Quiz  (only created if you pick a template quiz to duplicate)")
+        print("       [Assignment] <new quiz - duplicated from your template, renamed>")
+        print("     [SubHeader] Activities")
+        print(f"       [ExternalUrl] {template['lab_instructions_title']}")
+        print("       [Assignment] <new assignment - duplicated from your template, renamed>  "
+              "(requirement: must_submit, if created)")
     print("\n" + "=" * 60)
     print("Module 7 is NOT modified - nothing is moved, edited, or deleted.")
     print("=" * 60 + "\n")
@@ -245,7 +412,7 @@ def print_plan(dry_run):
 
 def get_course():
     """Validate configuration and connect. Only called when actually writing -
-    a dry run should work with no .env file at all."""
+    the offline preview should work with no .env file at all."""
     if not all([CANVAS_URL, CANVAS_TOKEN, COURSE_ID_STR]):
         raise ValueError(
             "Missing required environment variables!\n"
@@ -295,26 +462,26 @@ def create_page(course, title, body):
     })
 
 
-def build_module(course, spec, prerequisite_module_id=None):
+def build_module(course, name, items, prerequisite_module_id=None):
     """Create one module, its pages, and its items. Returns the module's id
     (whether newly created or already existing), so callers can wire it up
     as another module's prerequisite."""
-    existing = find_existing_module(course, spec["name"])
+    existing = find_existing_module(course, name)
     if existing:
-        print(f"↪️  Module '{spec['name']}' already exists (id {existing.id}) - skipping.")
+        print(f"↪️  Module '{name}' already exists (id {existing.id}) - skipping.")
         return existing.id
 
-    module_payload = {"name": spec["name"], "published": False}
+    module_payload = {"name": name, "published": False}
     if prerequisite_module_id:
         module_payload["prerequisite_module_ids"] = [prerequisite_module_id]
 
     # position is omitted so Canvas appends the module at the bottom.
     module = course.create_module(module=module_payload)
     lock_note = f", locked behind module {prerequisite_module_id}" if prerequisite_module_id else ""
-    print(f"📦 Created module '{spec['name']}' (id {module.id}, unpublished{lock_note})")
+    print(f"📦 Created module '{name}' (id {module.id}, unpublished{lock_note})")
 
-    indents = compute_indents(spec["items"])
-    for item, indent in zip(spec["items"], indents):
+    indents = compute_indents(items)
+    for item, indent in zip(items, indents):
         payload = {"type": item["type"], "title": item["title"], "indent": indent}
 
         if item["type"] == "Page":
@@ -334,7 +501,7 @@ def build_module(course, spec, prerequisite_module_id=None):
         req_note = f" (requires {item['require']})" if item.get("require") else ""
         print(f"      ✅ [{item['type']}] {item['title']}{req_note}")
 
-    print(f"🎉 Module '{spec['name']}' complete: {CANVAS_URL}/courses/{course.id}/modules\n")
+    print(f"🎉 Module '{name}' complete: {CANVAS_URL}/courses/{course.id}/modules\n")
     return module.id
 
 
@@ -344,28 +511,39 @@ def main():
     )
     parser.add_argument(
         "--apply", action="store_true",
-        help="Actually connect to Canvas and create the modules (after confirmation). "
-             "Without this flag, it's a dry run only."
+        help="Actually connect to Canvas, prompt for each module's week number, "
+             "assignment, and optional quiz, then create the modules (after "
+             "confirmation). Without this flag, it's an offline structural preview."
     )
     args = parser.parse_args()
 
-    print_plan(dry_run=not args.apply)
-
     if not args.apply:
-        print("This was a dry run - no connection to Canvas was made and nothing was created.")
-        print("Re-run with --apply to actually create the modules.")
+        print_template_plan()
+        print("This was an offline preview - no connection to Canvas was made and nothing was created.")
+        print("Re-run with --apply to be prompted for each module's details and create them.")
         return
 
     course = get_course()
 
-    if not confirm(f"Create {len(MODULES)} unpublished modules in '{course.name}'?"):
+    if not confirm(
+        f"Proceed with configuring and creating {len(MODULE_TEMPLATES)} "
+        f"unpublished modules in '{course.name}'?"
+    ):
         print("Aborted. Nothing was created.")
         return
 
+    assignments = list(course.get_assignments(include=["rubric_association"]))
+
+    used_weeks = set()
+    used_names = {a.name.strip().lower() for a in assignments}
+
     module_ids = {}
-    for spec in MODULES:
-        prereq_id = module_ids.get(spec.get("prerequisite"))
-        module_ids[spec["name"]] = build_module(course, spec, prerequisite_module_id=prereq_id)
+    for template in MODULE_TEMPLATES:
+        items = resolve_module_items(course, template, assignments, used_weeks, used_names)
+        prereq_id = module_ids.get(template.get("prerequisite"))
+        module_ids[template["name"]] = build_module(
+            course, template["name"], items, prerequisite_module_id=prereq_id
+        )
 
 
 if __name__ == "__main__":
