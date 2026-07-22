@@ -124,28 +124,29 @@ def post_announcement(title, body_html):
         print("Aborted. Nothing was posted.")
         return
 
-    if choice == "yes":
-        topic = course.create_discussion_topic(
-            title=title,
-            message=body_html,
-            is_announcement=True,
-            published=True,
-        )
-        print(f"🎉 Announcement published: {topic.html_url}")
-        return
+    # Determine parameters based on user choice
+    is_published = (choice == "yes")
+    delayed_at = None
+    hold_until = None
+    
+    if not is_published:
+        # Draft mode logic
+        hold_until = datetime.now(timezone.utc) + timedelta(days=DRAFT_HOLD_DAYS)
+        delayed_at = hold_until.strftime("%Y-%m-%dT%H:%M:%SZ")
 
-    # Draft: Canvas's API rejects published=False for announcements, so we
-    # use delayed_post_at set far in the future to hide it from students
-    # while still letting instructors open and review it right away.
-    hold_until = datetime.now(timezone.utc) + timedelta(days=DRAFT_HOLD_DAYS)
     topic = course.create_discussion_topic(
         title=title,
         message=body_html,
         is_announcement=True,
-        delayed_post_at=hold_until.strftime("%Y-%m-%dT%H:%M:%SZ"),
+        published=is_published,
+        delayed_post_at=delayed_at,
     )
-    print(f"📝 Created, hidden from students until {hold_until.isoformat()}: {topic.html_url}")
-    print("   To make it visible sooner, edit the 'Available from' date on the announcement in Canvas.")
+
+    if is_published:
+        print(f"🎉 Announcement published: {topic.html_url}")
+    else:
+        print(f"📝 Created, hidden from students until {hold_until.isoformat()}: {topic.html_url}")
+        print("   To make it visible sooner, edit the 'Available from' date on the announcement in Canvas.")
 
 
 def main():

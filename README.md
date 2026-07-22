@@ -1,16 +1,47 @@
-# Canvas API Template
+# Canvas Course Maintenance Toolkit
 
-A minimal template project for connecting to the Canvas API and modifying courses. Ready to fork and use in a dev container.
+A collection of standalone Python scripts for reading and safely modifying a Canvas LMS course through the Canvas REST API (via the [`canvasapi`](https://github.com/ucfopen/canvasapi) library). It began as a minimal connection template (`canvas_template.py`) and grew into a set of single-purpose course-maintenance tools used to prepare and re-term a Lane Community College course.
+
+Each script does one job and is run directly (`python <script>.py`). There is no shared framework. Every script that changes Canvas follows the same safety model — see [Safety model](#-safety-model) below.
+
+The scripts are all built on the connection/credential pattern in `canvas_template.py`, which comes from the [ProfBird/canvas-api-template](https://github.com/ProfBird/canvas-api-template) starter template.
+
+> **New here?** Do the [setup](#prerequisites) once, run `python canvas_template.py` to confirm your connection works, then read [The scripts](#-the-scripts).
 
 ---
 
-# 🚀 Quick Start (Recommended)
+# 🧰 The scripts
 
-1. Click **Use this template** on GitHub  
-2. Create your new repository  
-3. Open it in **Codespaces**
+| Script | What it does | Write trigger |
+|---|---|---|
+| `canvas_template.py` | Minimal connection test / starting point for new scripts. Lists the course's modules. | read-only |
+| `download_course_json.py` | Exports the whole course (info, modules, pages, assignments, discussions, quizzes, file metadata) to `downloads/course_<id>_<timestamp>.json`. | read-only |
+| `align_learning_outcomes.py` | Creates Canvas Learning Outcomes from a Markdown file and interactively aligns them to assignments. | `--apply` |
+| `post_announcement.py` | Posts the announcement in `content/welcome_announcement.md` (published, or held as a hidden draft). | `--post` |
+| `split_grid_flexbox_modules.py` | Splits a combined "CSS Grid and Flexbox" module into two new unpublished modules, duplicating assignments/quizzes via Canvas's own duplicate endpoint. | `--apply` |
+| `update_course_dates.py` | Applies an approved due/unlock/lock date mapping (`content/date_mapping.json`) to specific items by ID. Shows old→new diffs, writes an audit log. | `--live` |
+| `create_fake_students.py` | Creates/removes a batch of throwaway `@example.invalid` student accounts in a **sandbox** course for testing. Needs an account-admin token. | `--apply` |
+| `grade_assignment_poc.py` | Probes whether the current token can submit one grade for one submission via the API. | `--apply` |
 
-4. Add your Canvas credentials
+---
+
+# 🛡️ Safety model
+
+Every script that can change Canvas obeys the same rules. Preserve these when adding new scripts (they're spelled out in `CLAUDE.md`):
+
+- **Dry-run by default.** No flags = no changes. Writes happen only behind an explicit flag (`--live` / `--apply` / `--post`).
+- **Confirm the course first.** Scripts print the course name + ID and require confirmation before writing; bulk/destructive ones make you *type the course ID*.
+- **The token is never printed, logged, or written to a file.**
+- **Items are matched by Canvas ID, never by title** (this course has duplicate titles).
+- **Run against a sandbox course first**, review the diff, then repeat against the real course.
+
+---
+
+# 🚀 Quick Start
+
+1. Open the project in **Codespaces** (or a local dev container / venv)
+
+2. Add your Canvas credentials
 
 Go to:
 
@@ -22,7 +53,7 @@ CANVAS_URL
 CANVAS_TOKEN  
 COURSE_ID  
 
-5. Run the template:
+3. Confirm your connection:
 
 ```bash
 python canvas_template.py
@@ -212,22 +243,16 @@ If you don't have direct access to the course:
 
 ---
 
-# Usage Examples
+# Writing a new script
 
-The template script `canvas_template.py` demonstrates:
-
-- Connecting to Canvas API  
-- Retrieving course information  
-- Listing course modules  
-
-Extend it by uncommenting examples or adding new functionality.
+Start from `canvas_template.py` — it has the standard credential-loading and connection block every script here uses. Then follow the [Safety model](#-safety-model) and the conventions documented in `CLAUDE.md` (dry-run default, an explicit write flag, an audit log in `content/`, never logging the token). New Quizzes in this course are exposed through `get_assignments()`, not `get_quizzes()`; a graded discussion's due date lives on its linked assignment, not the discussion topic — `CLAUDE.md` lists these API gotchas.
 
 ---
 
 # Canvas API Documentation
 
-- Canvas API Docs  
-- canvasapi Python Library  
+- [Canvas LMS REST API](https://canvas.instructure.com/doc/api/)  
+- [`canvasapi` Python library](https://canvasapi.readthedocs.io/)  
 
 ---
 
