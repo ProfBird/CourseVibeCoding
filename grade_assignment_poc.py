@@ -73,7 +73,10 @@ def main():
     parser.add_argument("--assignment-id", type=int, required=True, help="Canvas assignment ID.")
     parser.add_argument("--user-id", type=int, required=True, help="Canvas user ID to grade (e.g. the Test Student).")
     parser.add_argument("--grade", required=True, help="Grade to submit, e.g. '10', '100%%', or 'A'.")
-    parser.add_argument("--comment", default=None, help="Optional grader comment to attach.")
+    parser.add_argument(
+        "--comment", default="Thank you for the submission.",
+        help="Grader comment to attach (default: 'Thank you for the submission.'). Pass '' for no comment."
+    )
     parser.add_argument(
         "--apply", action="store_true",
         help="Actually submit the grade after confirmation. Without this, only previews."
