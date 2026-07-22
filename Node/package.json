@@ -1,0 +1,17 @@
+{
+  "name": "canvas-download-assignment-submissions",
+  "version": "1.0.0",
+  "description": "Node.js port of Python/download_assignment_submissions.py - download the submitted work for one Canvas assignment, by ID.",
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
+  "bin": {
+    "download-assignment-submissions": "download_assignment_submissions.js"
+  },
+  "scripts": {
+    "start": "node download_assignment_submissions.js"
+  },
+  "license": "MIT",
+  "dependencies": {}
+}

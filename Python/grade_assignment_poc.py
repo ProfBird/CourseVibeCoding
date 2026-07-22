@@ -50,7 +50,7 @@ CANVAS_URL = os.getenv('CANVAS_URL')
 CANVAS_TOKEN = os.getenv('CANVAS_TOKEN')
 COURSE_ID_STR = os.getenv('COURSE_ID')
 
-CONTENT_DIR = Path(__file__).parent / "content"
+DOWNLOAD_ROOT = Path(__file__).parent / "downloads"
 
 
 def sanitize(text):
@@ -180,9 +180,9 @@ def main():
 
 
 def write_log(course_id, assignment_id, user_id, log):
-    CONTENT_DIR.mkdir(exist_ok=True)
+    DOWNLOAD_ROOT.mkdir(exist_ok=True)
     timestamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
-    path = CONTENT_DIR / f"grade_poc_{course_id}_{assignment_id}_{user_id}_{timestamp}.json"
+    path = DOWNLOAD_ROOT / f"grade_poc_{course_id}_{assignment_id}_{user_id}_{timestamp}.json"
     path.write_text(json.dumps(log, indent=2, default=str), encoding="utf-8")
     print(f"\U0001f4dd Log written: {path}")
 

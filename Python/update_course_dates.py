@@ -100,6 +100,7 @@ CANVAS_TOKEN = os.getenv('CANVAS_TOKEN')
 COURSE_ID_STR = os.getenv('COURSE_ID')
 
 CONTENT_DIR = Path(__file__).parent / "content"
+DOWNLOAD_ROOT = Path(__file__).parent / "downloads"
 DEFAULT_MAPPING_PATH = CONTENT_DIR / "date_mapping.example.json"
 
 # ISO 8601 datetime that must be explicit about UTC: a trailing 'Z' or a
@@ -522,9 +523,9 @@ def execute_plan(plan):
 
 def write_audit_log(course, args, mapping_path, semester_start, semester_end,
                      proposed, skipped, failed, completed, live_failed, mode):
-    CONTENT_DIR.mkdir(exist_ok=True)
+    DOWNLOAD_ROOT.mkdir(exist_ok=True)
     timestamp = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S")
-    out_path = CONTENT_DIR / f"date_update_audit_{course.id}_{timestamp}.json"
+    out_path = DOWNLOAD_ROOT / f"date_update_audit_{course.id}_{timestamp}.json"
     log = {
         "run_at": datetime.now(timezone.utc).isoformat(),
         "mode": mode,

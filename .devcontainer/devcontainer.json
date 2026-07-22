@@ -4,7 +4,7 @@
   "features": {
     "ghcr.io/devcontainers/features/git:1": {}
   },
-  "postCreateCommand": "pip install -r requirements.txt",
+  "postCreateCommand": "pip install -r Python/requirements.txt",
   "customizations": {
     "vscode": {
       "extensions": [

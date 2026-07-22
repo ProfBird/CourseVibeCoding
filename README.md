@@ -1,27 +1,38 @@
 # Canvas Course Maintenance Toolkit
 
-A collection of standalone Python scripts for reading and safely modifying a Canvas LMS course through the Canvas REST API (via the [`canvasapi`](https://github.com/ucfopen/canvasapi) library). It began as a minimal connection template (`canvas_template.py`) and grew into a set of single-purpose course-maintenance tools used to prepare and re-term a Lane Community College course.
+A collection of standalone scripts for reading and safely modifying a Canvas LMS course through the Canvas REST API. It began as a minimal Python connection template (`canvas_template.py`) and grew into a set of single-purpose course-maintenance tools used to prepare and re-term a Lane Community College course. The tools live in language folders:
 
-Each script does one job and is run directly (`python <script>.py`). There is no shared framework. Every script that changes Canvas follows the same safety model — see [Safety model](#-safety-model) below.
+- **`Python/`** — the primary toolkit, built on the [`canvasapi`](https://github.com/ucfopen/canvasapi) library. Run with `python Python/<script>.py`.
+- **`Node/`** — Node.js ports (starting with the submission downloader), zero-dependency using the built-in `fetch`. Run with `node Node/<script>.js`.
 
-The scripts are all built on the connection/credential pattern in `canvas_template.py`, which comes from the [ProfBird/canvas-api-template](https://github.com/ProfBird/canvas-api-template) starter template.
+Each script does one job and is run directly. There is no shared framework. Every script that changes Canvas follows the same safety model — see [Safety model](#-safety-model) below — regardless of language.
 
-> **New here?** Do the [setup](#prerequisites) once, run `python canvas_template.py` to confirm your connection works, then read [The scripts](#-the-scripts).
+The Python scripts are all built on the connection/credential pattern in `canvas_template.py`, which comes from the [ProfBird/canvas-api-template](https://github.com/ProfBird/canvas-api-template) starter template.
+
+> **New here?** Do the [setup](#prerequisites) once, run `python Python/canvas_template.py` to confirm your connection works, then read [The scripts](#-the-scripts).
 
 ---
 
 # 🧰 The scripts
 
+### Python (`Python/`)
+
 | Script | What it does | Write trigger |
 |---|---|---|
 | `canvas_template.py` | Minimal connection test / starting point for new scripts. Lists the course's modules. | read-only |
 | `download_course_json.py` | Exports the whole course (info, modules, pages, assignments, discussions, quizzes, file metadata) to `downloads/course_<id>_<timestamp>.json`. | read-only |
+| `download_assignment_submissions.py` | Downloads the submitted work (files / text / URL) for one assignment, by ID, into `downloads/assignment_<id>/` with a manifest. | read-only |
 | `align_learning_outcomes.py` | Creates Canvas Learning Outcomes from a Markdown file and interactively aligns them to assignments. | `--apply` |
 | `post_announcement.py` | Posts the announcement in `content/welcome_announcement.md` (published, or held as a hidden draft). | `--post` |
 | `split_grid_flexbox_modules.py` | Splits a combined "CSS Grid and Flexbox" module into two new unpublished modules, duplicating assignments/quizzes via Canvas's own duplicate endpoint. | `--apply` |
 | `update_course_dates.py` | Applies an approved due/unlock/lock date mapping (`content/date_mapping.json`) to specific items by ID. Shows old→new diffs, writes an audit log. | `--live` |
-| `create_fake_students.py` | Creates/removes a batch of throwaway `@example.invalid` student accounts in a **sandbox** course for testing. Needs an account-admin token. | `--apply` |
 | `grade_assignment_poc.py` | Probes whether the current token can submit one grade for one submission via the API. | `--apply` |
+
+### Node.js (`Node/`)
+
+| Script | What it does | Write trigger |
+|---|---|---|
+| `download_assignment_submissions.js` | Zero-dependency port of the Python script of the same name — downloads one assignment's submitted work into `Node/downloads/assignment_<id>/` with a manifest. | read-only |
 
 ---
 
@@ -56,8 +67,23 @@ COURSE_ID
 3. Confirm your connection:
 
 ```bash
-python canvas_template.py
+python Python/canvas_template.py
 ```
+
+---
+
+# 📁 Project structure
+
+```
+Python/             Python scripts + requirements.txt (the primary toolkit)
+  content/           Markdown/JSON inputs the Python scripts read (tracked), plus one small alignment log
+  downloads/         Course exports, downloaded submissions, and per-run audit logs (all gitignored)
+Node/                Node.js ports + package.json (zero-dependency, uses built-in fetch)
+  downloads/         Downloaded submissions from the Node scripts (gitignored)
+.env                 Canvas credentials (gitignored) — shared by both languages
+```
+
+Each language folder is self-contained: its scripts resolve `content/`/`downloads/` **relative to their own folder** (`Path(__file__).parent` in Python, `path.join(__dirname, ...)` in Node). `content/` is for things worth versioning — inputs like `date_mapping.json`, and `align_learning_outcomes.py`'s small `lo_alignment_log.json`. Everything else a script writes as a disposable record of one run (course/submission exports, `update_course_dates.py`'s audit logs) goes to `downloads/`, which is gitignored — so re-running a script never adds noise to `git status`. The one thing shared across both languages is `.env`, at the repo root; both find it by searching upward from the script.
 
 ---
 
@@ -65,6 +91,7 @@ python canvas_template.py
 
 - Canvas instance with API access enabled  
 - API token from your Canvas account  
+- Python 3.11+ (for `Python/`) and/or Node.js 18+ (for `Node/`)  
 
 ---
 
@@ -142,7 +169,7 @@ COURSE_ID=123456
 # 3. Run the Template
 
 ```bash
-python canvas_template.py
+python Python/canvas_template.py
 ```
 
 ---
@@ -245,7 +272,7 @@ If you don't have direct access to the course:
 
 # Writing a new script
 
-Start from `canvas_template.py` — it has the standard credential-loading and connection block every script here uses. Then follow the [Safety model](#-safety-model) and the conventions documented in `CLAUDE.md` (dry-run default, an explicit write flag, an audit log in `content/`, never logging the token). New Quizzes in this course are exposed through `get_assignments()`, not `get_quizzes()`; a graded discussion's due date lives on its linked assignment, not the discussion topic — `CLAUDE.md` lists these API gotchas.
+For Python, start from `Python/canvas_template.py` — it has the standard credential-loading and connection block every Python script here uses. For a new Node port, `Node/download_assignment_submissions.js` is the reference for the same conventions in JavaScript. Either way, follow the [Safety model](#-safety-model) and the conventions documented in `CLAUDE.md` (dry-run default, an explicit write flag, a per-run audit log in `downloads/`, never logging the token). New Quizzes in this course are exposed through the assignments endpoint, not the quizzes one; a graded discussion's due date lives on its linked assignment, not the discussion topic — `CLAUDE.md` lists these API gotchas.
 
 ---
 
