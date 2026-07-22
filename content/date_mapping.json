@@ -1,0 +1,59 @@
+{
+  "_comment": "Real approved mapping for course 680, term 2026-09-28 to 2026-12-13 (11 weeks incl. finals). Built from the reviewed rules: labs and forums due Thursdays 11:59pm Pacific (Week 9 moved to Mon 11/30 for the Nov 26-29 closure); weekly quizzes due Wednesdays 11:59pm Pacific, none in Week 5 (midterm week); midterm/final in-class quizzes open only during the 10:00-11:50am Tu class period; midterm/final testing-center windows run Sat before through Tue of that week; Term Project due Tue of finals week 11:59pm; Code Review due Thu of week 10 11:59pm. Forum due dates are set on each Forum's linked ASSIGNMENT shell (e.g. id 8659), not its DiscussionTopic (e.g. id 4072) - Canvas stores the graded due date on the assignment side.",
+
+  "semester_start": "2026-09-28T00:00:00Z",
+  "semester_end": "2026-12-13T23:59:59Z",
+
+  "items": [
+    { "type": "assignment", "id": 22143, "name": "Lab 1 Submission", "approved": true, "new_due_at": "2026-10-02T06:59:00Z" },
+    { "type": "assignment", "id": 22146, "name": "Lab 2 Submission", "approved": true, "new_due_at": "2026-10-09T06:59:00Z", "note": "Description also says 'Due date extended to Friday, 10/13/23' - stale text, needs a manual edit, not touched by this script." },
+    { "type": "assignment", "id": 22147, "name": "Lab 3 Submission", "approved": true, "new_due_at": "2026-10-16T06:59:00Z" },
+    { "type": "assignment", "id": 22148, "name": "Lab 4 Submission", "approved": true, "new_due_at": "2026-10-23T06:59:00Z" },
+    { "type": "assignment", "id": 22149, "name": "Lab 5 Submission", "approved": true, "new_due_at": "2026-11-06T07:59:00Z" },
+    { "type": "assignment", "id": 22150, "name": "Lab 6 Submission", "approved": true, "new_due_at": "2026-11-13T07:59:00Z" },
+    { "type": "assignment", "id": 22151, "name": "Lab 7 Submission", "approved": true, "new_due_at": "2026-11-20T07:59:00Z" },
+    { "type": "assignment", "id": 22154, "name": "Lab 8 Submission", "approved": true, "new_due_at": "2026-12-01T07:59:00Z", "note": "Moved from the normal Thu 11/26 to Mon 11/30 - college closed 11/26-11/29." },
+    { "type": "assignment", "id": 22155, "name": "Lab 9 Submission", "approved": true, "new_due_at": "2026-12-04T07:59:00Z" },
+
+    { "type": "assignment", "id": 22161, "name": "Quiz 1", "approved": true, "new_due_at": "2026-10-01T06:59:00Z", "new_lock_at": "2026-10-01T06:59:00Z" },
+    { "type": "assignment", "id": 22165, "name": "Quiz 2", "approved": true, "new_due_at": "2026-10-08T06:59:00Z", "new_lock_at": "2026-10-08T06:59:00Z" },
+    { "type": "assignment", "id": 22166, "name": "Quiz 3", "approved": true, "new_due_at": "2026-10-15T06:59:00Z", "new_lock_at": "2026-10-15T06:59:00Z" },
+    { "type": "assignment", "id": 22167, "name": "Quiz 4", "approved": true, "new_due_at": "2026-10-22T06:59:00Z", "new_lock_at": "2026-10-22T06:59:00Z" },
+    { "type": "assignment", "id": 22172, "name": "Reading Quiz 5 (week 6)", "approved": true, "new_due_at": "2026-11-05T07:59:00Z", "new_lock_at": "2026-11-05T07:59:00Z" },
+    { "type": "assignment", "id": 22173, "name": "Reading Quiz 6 (week 7)", "approved": true, "new_due_at": "2026-11-12T07:59:00Z", "new_lock_at": "2026-11-12T07:59:00Z" },
+    { "type": "assignment", "id": 22168, "name": "Quiz 7 (week 8)", "approved": true, "new_due_at": "2026-11-19T07:59:00Z", "new_lock_at": "2026-11-19T07:59:00Z" },
+    { "type": "assignment", "id": 22170, "name": "Quiz 8 - Multimedia (week 9)", "approved": true, "new_due_at": "2026-11-26T07:59:00Z", "new_lock_at": "2026-11-26T07:59:00Z" },
+    { "type": "assignment", "id": 22171, "name": "Quiz 9 (week 10)", "approved": true, "new_due_at": "2026-12-03T07:59:00Z", "new_lock_at": "2026-12-03T07:59:00Z" },
+
+    { "type": "assignment", "id": 22157, "name": "Midterm Quiz--in class", "approved": true,
+      "new_due_at": "2026-10-27T18:50:00Z", "new_unlock_at": "2026-10-27T17:00:00Z", "new_lock_at": "2026-10-27T18:50:00Z" },
+    { "type": "assignment", "id": 22158, "name": "Midterm Quiz--testing center", "approved": true,
+      "new_due_at": "2026-10-28T06:59:00Z", "new_unlock_at": "2026-10-24T07:00:00Z", "new_lock_at": "2026-10-28T06:59:00Z" },
+
+    { "type": "assignment", "id": 22140, "name": "Final Quiz--Classrom", "approved": true,
+      "new_due_at": "2026-12-08T19:50:00Z", "new_unlock_at": "2026-12-08T18:00:00Z", "new_lock_at": "2026-12-08T19:50:00Z" },
+    { "type": "assignment", "id": 22142, "name": "Final Quiz--Testing Center", "approved": true,
+      "new_due_at": "2026-12-09T07:59:00Z", "new_unlock_at": "2026-12-05T08:00:00Z", "new_lock_at": "2026-12-09T07:59:00Z" },
+
+    { "type": "assignment", "id": 8659, "name": "Week 1 Forum - Introductions", "approved": true, "new_due_at": "2026-10-02T06:59:00Z" },
+    { "type": "assignment", "id": 8663, "name": "Week 2 Forum - [topic]", "approved": true, "new_due_at": "2026-10-09T06:59:00Z" },
+    { "type": "assignment", "id": 8667, "name": "Week 3 Forum - [topic]", "approved": true, "new_due_at": "2026-10-16T06:59:00Z" },
+    { "type": "assignment", "id": 8672, "name": "Week 4 Forum - [topic]", "approved": true, "new_due_at": "2026-10-23T06:59:00Z" },
+    { "type": "assignment", "id": 8676, "name": "Week 5 Forum - [topic]", "approved": true, "new_due_at": "2026-10-30T06:59:00Z" },
+    { "type": "assignment", "id": 8683, "name": "Week 6 Forum - [topic]", "approved": true, "new_due_at": "2026-11-06T07:59:00Z" },
+    { "type": "assignment", "id": 8689, "name": "Week 7 Forum - [topic]", "approved": true, "new_due_at": "2026-11-13T07:59:00Z" },
+    { "type": "assignment", "id": 8699, "name": "Week 8 Forum - [topic]", "approved": true, "new_due_at": "2026-11-20T07:59:00Z" },
+    { "type": "assignment", "id": 8709, "name": "Week 9 Forum - [topic]", "approved": true, "new_due_at": "2026-12-01T07:59:00Z", "note": "Moved from the normal Thu 11/26 to Mon 11/30 - college closed 11/26-11/29." },
+    { "type": "assignment", "id": 8718, "name": "Week 10 Forum - [topic]", "approved": true, "new_due_at": "2026-12-04T07:59:00Z" },
+
+    { "type": "assignment", "id": 22174, "name": "Term Project", "approved": true, "new_due_at": "2026-12-09T07:59:00Z" },
+    { "type": "assignment", "id": 22175, "name": "Term project code review", "approved": true, "new_due_at": "2026-12-04T07:59:00Z" },
+
+    { "type": "manual_review", "id": 22162, "name": "Quiz 10", "reason": "Left unpublished, no date assigned - doesn't fit an 11-week term, reserved for future use per instructor." },
+    { "type": "manual_review", "id": 22139, "name": "Alternate Midterm Quiz", "reason": "Reserved for future use per instructor - leave hidden/unpublished, no date assigned." },
+    { "type": "manual_review", "id": 22156, "name": "Midterm Quiz--Remote", "reason": "Reserved for future use per instructor - leave hidden/unpublished, no date assigned." },
+    { "type": "manual_review", "id": 22141, "name": "Final Quiz--Remote", "reason": "Reserved for future use per instructor - leave hidden/unpublished, no date assigned." },
+
+    { "type": "manual_review", "id": 32158, "name": "\"I accidentally forgot to record...\" page", "reason": "Written 'Tuesday's class' / 'Fall 2022' reference in page body - not a structured date field, needs a manual rewrite." }
+  ]
+}

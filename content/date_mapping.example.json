@@ -1,0 +1,44 @@
+{
+  "_comment": "EXAMPLE / TEMPLATE ONLY. Every real entry below is 'approved': false, so running update_course_dates.py against this file - even with --live - changes nothing. Copy this file, fill in real reviewed dates, and flip 'approved' to true only for items you've checked.",
+
+  "semester_start": "2026-09-28T00:00:00Z",
+  "semester_end": "2026-12-13T23:59:59Z",
+
+  "items": [
+    {
+      "type": "assignment",
+      "id": 22146,
+      "name": "Lab 2 Submission",
+      "approved": false,
+      "new_due_at": "2026-10-12T06:59:00Z",
+      "new_unlock_at": null,
+      "new_lock_at": null,
+      "note": "Description text still says 'Due date extended to Friday, 10/13/23' - that sentence needs a manual edit, this script won't touch it.",
+      "overrides": []
+    },
+    {
+      "type": "assignment",
+      "id": 22154,
+      "name": "Lab 8 Submission (the published one, not the two duplicate shells)",
+      "approved": false,
+      "new_due_at": "2026-11-22T07:59:00Z",
+      "new_unlock_at": null,
+      "new_lock_at": null
+    },
+    {
+      "type": "discussion",
+      "id": 4072,
+      "name": "Week 1 Forum - Introductions",
+      "approved": false,
+      "new_delayed_post_at": null,
+      "new_lock_at": "2026-10-05T06:59:00Z",
+      "note": "Body text still reads 'Due [Date]' twice - manual edit needed, not done by this script."
+    },
+    {
+      "type": "manual_review",
+      "id": 32158,
+      "name": "\"I accidentally forgot to record...\" page",
+      "reason": "Page title/body references 'Tuesday's class' and 'Fall 2022' - written text, not a structured date field. Needs a manual rewrite, not a script edit."
+    }
+  ]
+}
