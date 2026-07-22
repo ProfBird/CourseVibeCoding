@@ -1,0 +1,15 @@
+{
+  "timestamp": "2026-07-22T20:07:07.840550+00:00",
+  "course_id": 680,
+  "assignment_id": 8846,
+  "assignment_name": "Week 2 Assignment",
+  "user_id": 1494,
+  "before": {
+    "grade": "100",
+    "score": 100.0,
+    "workflow_state": "graded"
+  },
+  "proposed_grade": "10",
+  "comment": null,
+  "mode": "dry_run"
+}
