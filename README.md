@@ -166,10 +166,10 @@ COURSE_ID=123456
 
 ---
 
-# 3. Run the Template
+# 3. Run the Script
 
 ```bash
-python Python/canvas_template.py
+python Python/download_course_json.py
 ```
 
 ---
