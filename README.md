@@ -279,7 +279,11 @@ For Python, start from `Python/canvas_template.py` — it has the standard crede
 # Canvas API Documentation
 
 - [Canvas LMS REST API](https://canvas.instructure.com/doc/api/)  
-- [`canvasapi` Python library](https://canvasapi.readthedocs.io/)  
+- [Canvas LMS REST API — Instructure Developer Docs](https://developerdocs.instructure.com/services/canvas) — the official, currently-maintained reference for every REST endpoint.
+- [`canvasapi` Python library](https://canvasapi.readthedocs.io/) — documentation for the wrapper this project's Python scripts use.
+- [`canvasapi` class reference](https://canvasapi.readthedocs.io/en/stable/class-reference.html) — every class's own page; the fastest way to see exactly which REST call a `canvasapi` method makes.
+- [`canvasapi` GitHub repository](https://github.com/ucfopen/canvasapi) (UCF Open) — the wrapper's source: classes, methods, arguments, and feature support.
+- [Canvas LMS GitHub repository](https://github.com/instructure/canvas-lms/) — Instructure's open-source Canvas itself, for self-hosting on your own VPS/VM.
 
 ---
 
