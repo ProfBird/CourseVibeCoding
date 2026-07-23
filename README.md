@@ -33,6 +33,7 @@ The Python scripts are all built on the connection/credential pattern in `canvas
 | Script | What it does | Write trigger |
 |---|---|---|
 | `download_assignment_submissions.js` | Zero-dependency port of the Python script of the same name — downloads one assignment's submitted work into `Node/downloads/assignment_<id>/` with a manifest. | read-only |
+| `grade_assignment_poc.js` | Zero-dependency port of the Python script of the same name — probes whether the current token can submit one grade for one submission via the API. | `--apply` |
 
 ---
 
