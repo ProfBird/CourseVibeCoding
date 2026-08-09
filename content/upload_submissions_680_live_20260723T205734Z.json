@@ -1,0 +1,97 @@
+{
+  "timestamp": "2026-07-23T20:57:32.619870+00:00",
+  "course_id": 680,
+  "course_name": "Credit Course Sandbox 1 (Bird DEV)",
+  "source_root": "/Volumes/DataCard/Projects/GradingAutomation/LabSubmissions",
+  "filters": {
+    "assignment_id": 22143,
+    "user_id": 311
+  },
+  "student_order": [
+    {
+      "index": 0,
+      "user_id": 311,
+      "name": "Test Student One"
+    },
+    {
+      "index": 1,
+      "user_id": 312,
+      "name": "Test Student Two"
+    },
+    {
+      "index": 2,
+      "user_id": 313,
+      "name": "Test Student Three"
+    },
+    {
+      "index": 3,
+      "user_id": 314,
+      "name": "Test Student Four"
+    },
+    {
+      "index": 4,
+      "user_id": 315,
+      "name": "Test Student Five"
+    },
+    {
+      "index": 5,
+      "user_id": 316,
+      "name": "Test Student Six"
+    },
+    {
+      "index": 6,
+      "user_id": 317,
+      "name": "Test Student Seven"
+    },
+    {
+      "index": 7,
+      "user_id": 318,
+      "name": "Test Student Eight"
+    },
+    {
+      "index": 8,
+      "user_id": 319,
+      "name": "Test Student Nine"
+    },
+    {
+      "index": 9,
+      "user_id": 320,
+      "name": "Test Student Ten"
+    }
+  ],
+  "planned": [
+    {
+      "source_dir": "CIS195_Lab1Submissions",
+      "assignment_id": 22143,
+      "assignment_name": "Lab 1 Submission",
+      "student_index": 0,
+      "test_student_user_id": 311,
+      "test_student_name": "Test Student One",
+      "source_folder": "AdrianTillery",
+      "source_folder_path": "/Volumes/DataCard/Projects/GradingAutomation/LabSubmissions/CIS195_Lab1Submissions/AdrianTillery"
+    }
+  ],
+  "mode": "live",
+  "results": [
+    {
+      "source_dir": "CIS195_Lab1Submissions",
+      "assignment_id": 22143,
+      "assignment_name": "Lab 1 Submission",
+      "test_student_user_id": 311,
+      "test_student_name": "Test Student One",
+      "source_folder": "AdrianTillery",
+      "zip_name": "Test_Student_One_CIS195_Lab1Submissions.zip",
+      "file_count": 4,
+      "uploaded_file_id": 85469,
+      "submission_state": null,
+      "submitted_at": null,
+      "result": "failed",
+      "error": "{\"status\":\"unauthorized\",\"errors\":[{\"message\":\"user not authorized to perform that action\"}]}"
+    }
+  ],
+  "summary": {
+    "success": 0,
+    "failed": 1,
+    "skipped": 0
+  }
+}

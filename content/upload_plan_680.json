@@ -1,0 +1,1122 @@
+{
+  "generated_at": "2026-07-23T20:54:57.798844+00:00",
+  "note": "READ-ONLY discovery output. Review dir_to_assignment before running the upload script. Nothing here has been written to Canvas.",
+  "course_id": 680,
+  "course_name": "Credit Course Sandbox 1 (Bird DEV)",
+  "source_root": "/Volumes/DataCard/Projects/GradingAutomation/LabSubmissions",
+  "student_prefix": "Test Student",
+  "test_students": [
+    {
+      "user_id": 318,
+      "name": "Test Student Eight",
+      "sortable_name": "Student Eight, Test"
+    },
+    {
+      "user_id": 315,
+      "name": "Test Student Five",
+      "sortable_name": "Student Five, Test"
+    },
+    {
+      "user_id": 314,
+      "name": "Test Student Four",
+      "sortable_name": "Student Four, Test"
+    },
+    {
+      "user_id": 319,
+      "name": "Test Student Nine",
+      "sortable_name": "Student Nine, Test"
+    },
+    {
+      "user_id": 311,
+      "name": "Test Student One",
+      "sortable_name": "Student One, Test"
+    },
+    {
+      "user_id": 317,
+      "name": "Test Student Seven",
+      "sortable_name": "Student Seven, Test"
+    },
+    {
+      "user_id": 316,
+      "name": "Test Student Six",
+      "sortable_name": "Student Six, Test"
+    },
+    {
+      "user_id": 320,
+      "name": "Test Student Ten",
+      "sortable_name": "Student Ten, Test"
+    },
+    {
+      "user_id": 313,
+      "name": "Test Student Three",
+      "sortable_name": "Student Three, Test"
+    },
+    {
+      "user_id": 312,
+      "name": "Test Student Two",
+      "sortable_name": "Student Two, Test"
+    }
+  ],
+  "assignments": [
+    {
+      "id": 8835,
+      "name": "Week 0 Assignment [Template]",
+      "submission_types": [
+        "online_upload"
+      ],
+      "allowed_extensions": [],
+      "published": true,
+      "points_possible": 100.0,
+      "due_at": null
+    },
+    {
+      "id": 8846,
+      "name": "Week 2 Assignment",
+      "submission_types": [
+        "online_upload"
+      ],
+      "allowed_extensions": [],
+      "published": true,
+      "points_possible": 100.0,
+      "due_at": null
+    },
+    {
+      "id": 8849,
+      "name": "Week 3 Assignment",
+      "submission_types": [
+        "online_upload"
+      ],
+      "allowed_extensions": [],
+      "published": true,
+      "points_possible": 100.0,
+      "due_at": null
+    },
+    {
+      "id": 8854,
+      "name": "Week 4 Assignment",
+      "submission_types": [
+        "online_upload"
+      ],
+      "allowed_extensions": [],
+      "published": true,
+      "points_possible": 100.0,
+      "due_at": null
+    },
+    {
+      "id": 8856,
+      "name": "Week 5 Assignment",
+      "submission_types": [
+        "online_upload"
+      ],
+      "allowed_extensions": [],
+      "published": true,
+      "points_possible": 100.0,
+      "due_at": null
+    },
+    {
+      "id": 8862,
+      "name": "Week 6 Assignment",
+      "submission_types": [
+        "online_upload"
+      ],
+      "allowed_extensions": [],
+      "published": true,
+      "points_possible": 100.0,
+      "due_at": null
+    },
+    {
+      "id": 8870,
+      "name": "Week 7 Assignment",
+      "submission_types": [
+        "online_upload"
+      ],
+      "allowed_extensions": [],
+      "published": true,
+      "points_possible": 100.0,
+      "due_at": null
+    },
+    {
+      "id": 8875,
+      "name": "Week 8 Assignment",
+      "submission_types": [
+        "online_upload"
+      ],
+      "allowed_extensions": [],
+      "published": true,
+      "points_possible": 100.0,
+      "due_at": null
+    },
+    {
+      "id": 8881,
+      "name": "Week 9 Assignment",
+      "submission_types": [
+        "online_upload"
+      ],
+      "allowed_extensions": [],
+      "published": true,
+      "points_possible": 100.0,
+      "due_at": null
+    },
+    {
+      "id": 8841,
+      "name": "Week 10 Assignment",
+      "submission_types": [
+        "online_upload"
+      ],
+      "allowed_extensions": [],
+      "published": true,
+      "points_possible": 100.0,
+      "due_at": null
+    },
+    {
+      "id": 8844,
+      "name": "Week 11 Assignment",
+      "submission_types": [
+        "online_upload"
+      ],
+      "allowed_extensions": [],
+      "published": true,
+      "points_possible": 100.0,
+      "due_at": null
+    },
+    {
+      "id": 8837,
+      "name": "Week 1 Assignment",
+      "submission_types": [
+        "online_upload"
+      ],
+      "allowed_extensions": [],
+      "published": true,
+      "points_possible": 100.0,
+      "due_at": null
+    },
+    {
+      "id": 16255,
+      "name": "Teast assignment",
+      "submission_types": [
+        "online_text_entry"
+      ],
+      "allowed_extensions": [],
+      "published": false,
+      "points_possible": 0.0,
+      "due_at": null
+    },
+    {
+      "id": 16443,
+      "name": "New test assignment",
+      "submission_types": [
+        "online_text_entry",
+        "online_upload"
+      ],
+      "allowed_extensions": [],
+      "published": true,
+      "points_possible": 10.0,
+      "due_at": null
+    },
+    {
+      "id": 22143,
+      "name": "Lab 1 Submission",
+      "submission_types": [
+        "online_text_entry",
+        "online_upload"
+      ],
+      "allowed_extensions": [],
+      "published": true,
+      "points_possible": 40.0,
+      "due_at": "2026-10-02T06:59:00Z"
+    },
+    {
+      "id": 22146,
+      "name": "Lab 2 Submission",
+      "submission_types": [
+        "online_text_entry",
+        "online_upload"
+      ],
+      "allowed_extensions": [],
+      "published": true,
+      "points_possible": 40.0,
+      "due_at": "2026-10-09T06:59:00Z"
+    },
+    {
+      "id": 22147,
+      "name": "Lab 3 Submission",
+      "submission_types": [
+        "online_text_entry",
+        "online_upload"
+      ],
+      "allowed_extensions": [],
+      "published": true,
+      "points_possible": 40.0,
+      "due_at": "2026-10-16T06:59:00Z"
+    },
+    {
+      "id": 22148,
+      "name": "Lab 4 Submission",
+      "submission_types": [
+        "online_text_entry",
+        "online_upload"
+      ],
+      "allowed_extensions": [],
+      "published": true,
+      "points_possible": 40.0,
+      "due_at": "2026-10-23T06:59:00Z"
+    },
+    {
+      "id": 22149,
+      "name": "Lab 5 Submission",
+      "submission_types": [
+        "online_text_entry",
+        "online_upload"
+      ],
+      "allowed_extensions": [],
+      "published": true,
+      "points_possible": 40.0,
+      "due_at": "2026-11-06T07:59:00Z"
+    },
+    {
+      "id": 22150,
+      "name": "Lab 6 Submission",
+      "submission_types": [
+        "online_text_entry",
+        "online_upload"
+      ],
+      "allowed_extensions": [],
+      "published": true,
+      "points_possible": 40.0,
+      "due_at": "2026-11-13T07:59:00Z"
+    },
+    {
+      "id": 22151,
+      "name": "Lab 7 Submission",
+      "submission_types": [
+        "online_text_entry",
+        "online_upload"
+      ],
+      "allowed_extensions": [],
+      "published": true,
+      "points_possible": 40.0,
+      "due_at": "2026-11-20T07:59:00Z"
+    },
+    {
+      "id": 22145,
+      "name": "Lab 13 Submission",
+      "submission_types": [
+        "online_text_entry",
+        "online_upload"
+      ],
+      "allowed_extensions": [],
+      "published": true,
+      "points_possible": 40.0,
+      "due_at": "2027-01-02T07:59:00Z"
+    },
+    {
+      "id": 22144,
+      "name": "Lab 12 Submission",
+      "submission_types": [
+        "online_text_entry",
+        "online_upload"
+      ],
+      "allowed_extensions": [],
+      "published": true,
+      "points_possible": 40.0,
+      "due_at": "2026-12-26T07:59:00Z"
+    },
+    {
+      "id": 22152,
+      "name": "Lab 8 Submission",
+      "submission_types": [
+        "online_text_entry",
+        "online_upload"
+      ],
+      "allowed_extensions": [],
+      "published": false,
+      "points_possible": 40.0,
+      "due_at": "2027-01-02T07:59:00Z"
+    },
+    {
+      "id": 22153,
+      "name": "Lab 8 Submission",
+      "submission_types": [
+        "online_text_entry",
+        "online_upload"
+      ],
+      "allowed_extensions": [],
+      "published": false,
+      "points_possible": 40.0,
+      "due_at": "2026-12-26T07:59:00Z"
+    },
+    {
+      "id": 22154,
+      "name": "Lab 8 Submission",
+      "submission_types": [
+        "online_text_entry",
+        "online_upload"
+      ],
+      "allowed_extensions": [],
+      "published": true,
+      "points_possible": 40.0,
+      "due_at": "2026-12-01T07:59:00Z"
+    },
+    {
+      "id": 22155,
+      "name": "Lab 9 Submission",
+      "submission_types": [
+        "online_text_entry",
+        "online_upload"
+      ],
+      "allowed_extensions": [],
+      "published": true,
+      "points_possible": 40.0,
+      "due_at": "2026-12-04T07:59:00Z"
+    },
+    {
+      "id": 22175,
+      "name": "Term project code review",
+      "submission_types": [
+        "online_text_entry",
+        "online_upload"
+      ],
+      "allowed_extensions": [],
+      "published": true,
+      "points_possible": 10.0,
+      "due_at": "2026-12-04T07:59:00Z"
+    },
+    {
+      "id": 22174,
+      "name": "Term Project",
+      "submission_types": [
+        "online_text_entry",
+        "online_upload"
+      ],
+      "allowed_extensions": [],
+      "published": true,
+      "points_possible": 100.0,
+      "due_at": "2026-12-09T07:59:00Z"
+    }
+  ],
+  "source_dirs": [
+    {
+      "dir": "CIS195_Lab1Submissions",
+      "kind": "lab",
+      "number": 1,
+      "student_folder_count": 44,
+      "sample_folders": [
+        {
+          "folder": "AdrianTillery",
+          "file_count": 4,
+          "has_subdirs": false
+        },
+        {
+          "folder": "AmaraIverson",
+          "file_count": 15,
+          "has_subdirs": true
+        },
+        {
+          "folder": "CaseyLachlan",
+          "file_count": 3,
+          "has_subdirs": true
+        },
+        {
+          "folder": "CorinMarlowe",
+          "file_count": 5,
+          "has_subdirs": true
+        },
+        {
+          "folder": "CoveCrowther",
+          "file_count": 5,
+          "has_subdirs": true
+        },
+        {
+          "folder": "CovePrescott",
+          "file_count": 9,
+          "has_subdirs": true
+        },
+        {
+          "folder": "DevonMerrow",
+          "file_count": 3,
+          "has_subdirs": false
+        },
+        {
+          "folder": "FernTarrant",
+          "file_count": 10,
+          "has_subdirs": true
+        },
+        {
+          "folder": "FinleyWrenfield",
+          "file_count": 0,
+          "has_subdirs": true
+        },
+        {
+          "folder": "GaleGalbraith",
+          "file_count": 5,
+          "has_subdirs": true
+        }
+      ]
+    },
+    {
+      "dir": "CIS195_Lab2Submissions",
+      "kind": "lab",
+      "number": 2,
+      "student_folder_count": 52,
+      "sample_folders": [
+        {
+          "folder": "AmaraIverson",
+          "file_count": 25,
+          "has_subdirs": true
+        },
+        {
+          "folder": "BayYardley",
+          "file_count": 10,
+          "has_subdirs": true
+        },
+        {
+          "folder": "CaseyLachlan",
+          "file_count": 9,
+          "has_subdirs": true
+        },
+        {
+          "folder": "CorinMarlowe",
+          "file_count": 8,
+          "has_subdirs": true
+        },
+        {
+          "folder": "CoveCrowther",
+          "file_count": 10,
+          "has_subdirs": true
+        },
+        {
+          "folder": "CovePrescott",
+          "file_count": 10,
+          "has_subdirs": true
+        },
+        {
+          "folder": "DevonMerrow",
+          "file_count": 8,
+          "has_subdirs": true
+        },
+        {
+          "folder": "ElliotGladstone",
+          "file_count": 5,
+          "has_subdirs": false
+        },
+        {
+          "folder": "EllisNightingale",
+          "file_count": 8,
+          "has_subdirs": true
+        },
+        {
+          "folder": "FernTarrant",
+          "file_count": 9,
+          "has_subdirs": true
+        }
+      ]
+    },
+    {
+      "dir": "CIS195_Lab3Submissions",
+      "kind": "lab",
+      "number": 3,
+      "student_folder_count": 52,
+      "sample_folders": [
+        {
+          "folder": "AdrianTillery",
+          "file_count": 9,
+          "has_subdirs": true
+        },
+        {
+          "folder": "AmaraIverson",
+          "file_count": 13,
+          "has_subdirs": true
+        },
+        {
+          "folder": "BayYardley",
+          "file_count": 8,
+          "has_subdirs": true
+        },
+        {
+          "folder": "CaseyLachlan",
+          "file_count": 11,
+          "has_subdirs": true
+        },
+        {
+          "folder": "CorinMarlowe",
+          "file_count": 8,
+          "has_subdirs": true
+        },
+        {
+          "folder": "CoveCrowther",
+          "file_count": 8,
+          "has_subdirs": true
+        },
+        {
+          "folder": "CovePrescott",
+          "file_count": 19,
+          "has_subdirs": true
+        },
+        {
+          "folder": "DevonMerrow",
+          "file_count": 8,
+          "has_subdirs": true
+        },
+        {
+          "folder": "ElliotGladstone",
+          "file_count": 5,
+          "has_subdirs": true
+        },
+        {
+          "folder": "EllisNightingale",
+          "file_count": 11,
+          "has_subdirs": true
+        }
+      ]
+    },
+    {
+      "dir": "CIS195_Lab4Submissions",
+      "kind": "lab",
+      "number": 4,
+      "student_folder_count": 57,
+      "sample_folders": [
+        {
+          "folder": "AdrianCorwin",
+          "file_count": 9,
+          "has_subdirs": true
+        },
+        {
+          "folder": "AdrianTillery",
+          "file_count": 12,
+          "has_subdirs": true
+        },
+        {
+          "folder": "AmaraIverson",
+          "file_count": 27,
+          "has_subdirs": true
+        },
+        {
+          "folder": "BayYardley",
+          "file_count": 12,
+          "has_subdirs": true
+        },
+        {
+          "folder": "CaseyGladstone",
+          "file_count": 15,
+          "has_subdirs": true
+        },
+        {
+          "folder": "CaseyLachlan",
+          "file_count": 10,
+          "has_subdirs": true
+        },
+        {
+          "folder": "CorinMarlowe",
+          "file_count": 9,
+          "has_subdirs": true
+        },
+        {
+          "folder": "CorinPrescott",
+          "file_count": 4,
+          "has_subdirs": false
+        },
+        {
+          "folder": "CoveCrowther",
+          "file_count": 9,
+          "has_subdirs": true
+        },
+        {
+          "folder": "CovePrescott",
+          "file_count": 11,
+          "has_subdirs": true
+        }
+      ]
+    },
+    {
+      "dir": "CIS195_Lab5Submissions",
+      "kind": "lab",
+      "number": 5,
+      "student_folder_count": 52,
+      "sample_folders": [
+        {
+          "folder": "AdrianCorwin",
+          "file_count": 8,
+          "has_subdirs": true
+        },
+        {
+          "folder": "AdrianTillery",
+          "file_count": 23,
+          "has_subdirs": true
+        },
+        {
+          "folder": "AmaraIverson",
+          "file_count": 28,
+          "has_subdirs": true
+        },
+        {
+          "folder": "BayYardley",
+          "file_count": 12,
+          "has_subdirs": true
+        },
+        {
+          "folder": "CaseyGladstone",
+          "file_count": 16,
+          "has_subdirs": true
+        },
+        {
+          "folder": "CaseyLachlan",
+          "file_count": 10,
+          "has_subdirs": true
+        },
+        {
+          "folder": "CorinMarlowe",
+          "file_count": 9,
+          "has_subdirs": true
+        },
+        {
+          "folder": "CoveCrowther",
+          "file_count": 9,
+          "has_subdirs": true
+        },
+        {
+          "folder": "CovePrescott",
+          "file_count": 11,
+          "has_subdirs": true
+        },
+        {
+          "folder": "DevonMerrow",
+          "file_count": 9,
+          "has_subdirs": true
+        }
+      ]
+    },
+    {
+      "dir": "CIS195_Lab6Submissions",
+      "kind": "lab",
+      "number": 6,
+      "student_folder_count": 48,
+      "sample_folders": [
+        {
+          "folder": "AdrianCorwin",
+          "file_count": 9,
+          "has_subdirs": true
+        },
+        {
+          "folder": "AmaraIverson",
+          "file_count": 27,
+          "has_subdirs": true
+        },
+        {
+          "folder": "BayYardley",
+          "file_count": 12,
+          "has_subdirs": true
+        },
+        {
+          "folder": "CaseyGladstone",
+          "file_count": 17,
+          "has_subdirs": true
+        },
+        {
+          "folder": "CaseyLachlan",
+          "file_count": 10,
+          "has_subdirs": true
+        },
+        {
+          "folder": "CorinMarlowe",
+          "file_count": 11,
+          "has_subdirs": true
+        },
+        {
+          "folder": "CoveCrowther",
+          "file_count": 9,
+          "has_subdirs": true
+        },
+        {
+          "folder": "CovePrescott",
+          "file_count": 11,
+          "has_subdirs": true
+        },
+        {
+          "folder": "DevonMerrow",
+          "file_count": 9,
+          "has_subdirs": true
+        },
+        {
+          "folder": "EllisNightingale",
+          "file_count": 9,
+          "has_subdirs": true
+        }
+      ]
+    },
+    {
+      "dir": "CIS195_Lab7Submissions",
+      "kind": "lab",
+      "number": 7,
+      "student_folder_count": 50,
+      "sample_folders": [
+        {
+          "folder": "AdrianCorwin",
+          "file_count": 1,
+          "has_subdirs": true
+        },
+        {
+          "folder": "AmaraIverson",
+          "file_count": 2,
+          "has_subdirs": true
+        },
+        {
+          "folder": "CaseyGladstone",
+          "file_count": 4,
+          "has_subdirs": true
+        },
+        {
+          "folder": "CaseyLachlan",
+          "file_count": 2,
+          "has_subdirs": true
+        },
+        {
+          "folder": "CorinMarlowe",
+          "file_count": 1,
+          "has_subdirs": true
+        },
+        {
+          "folder": "CoveCrowther",
+          "file_count": 2,
+          "has_subdirs": true
+        },
+        {
+          "folder": "CovePrescott",
+          "file_count": 2,
+          "has_subdirs": true
+        },
+        {
+          "folder": "DevonMerrow",
+          "file_count": 2,
+          "has_subdirs": false
+        },
+        {
+          "folder": "EllisNightingale",
+          "file_count": 1,
+          "has_subdirs": true
+        },
+        {
+          "folder": "FernTarrant",
+          "file_count": 2,
+          "has_subdirs": true
+        }
+      ]
+    },
+    {
+      "dir": "CIS195_Lab8Submissions",
+      "kind": "lab",
+      "number": 8,
+      "student_folder_count": 11,
+      "sample_folders": [
+        {
+          "folder": "AdrianTillery",
+          "file_count": 4,
+          "has_subdirs": true
+        },
+        {
+          "folder": "GaleGalbraith",
+          "file_count": 3,
+          "has_subdirs": true
+        },
+        {
+          "folder": "JamieGalbraith",
+          "file_count": 5,
+          "has_subdirs": true
+        },
+        {
+          "folder": "KaiHollis",
+          "file_count": 7,
+          "has_subdirs": true
+        },
+        {
+          "folder": "KitIpswich",
+          "file_count": 1,
+          "has_subdirs": true
+        },
+        {
+          "folder": "LiorEllery",
+          "file_count": 12,
+          "has_subdirs": true
+        },
+        {
+          "folder": "NovaRavenscroft",
+          "file_count": 3,
+          "has_subdirs": true
+        },
+        {
+          "folder": "RiverBellweather",
+          "file_count": 3,
+          "has_subdirs": true
+        },
+        {
+          "folder": "SageYardley",
+          "file_count": 3,
+          "has_subdirs": true
+        },
+        {
+          "folder": "SunnyWexford",
+          "file_count": 4,
+          "has_subdirs": true
+        }
+      ]
+    },
+    {
+      "dir": "CIS195_Lab9Submissions",
+      "kind": "lab",
+      "number": 9,
+      "student_folder_count": 41,
+      "sample_folders": [
+        {
+          "folder": "AmaraIverson",
+          "file_count": 1,
+          "has_subdirs": true
+        },
+        {
+          "folder": "CaseyGladstone",
+          "file_count": 2,
+          "has_subdirs": true
+        },
+        {
+          "folder": "CaseyLachlan",
+          "file_count": 3,
+          "has_subdirs": true
+        },
+        {
+          "folder": "CorinMarlowe",
+          "file_count": 2,
+          "has_subdirs": true
+        },
+        {
+          "folder": "CovePrescott",
+          "file_count": 2,
+          "has_subdirs": true
+        },
+        {
+          "folder": "DevonMerrow",
+          "file_count": 4,
+          "has_subdirs": true
+        },
+        {
+          "folder": "EllisNightingale",
+          "file_count": 0,
+          "has_subdirs": false
+        },
+        {
+          "folder": "FernTarrant",
+          "file_count": 1,
+          "has_subdirs": true
+        },
+        {
+          "folder": "HavenCrowther",
+          "file_count": 2,
+          "has_subdirs": true
+        },
+        {
+          "folder": "JamieGalbraith",
+          "file_count": 4,
+          "has_subdirs": true
+        }
+      ]
+    },
+    {
+      "dir": "CIS195_TermProjects",
+      "kind": "term_project",
+      "number": null,
+      "student_folder_count": 50,
+      "sample_folders": [
+        {
+          "folder": "AdrianCorwin",
+          "file_count": 11,
+          "has_subdirs": true
+        },
+        {
+          "folder": "AdrianTillery",
+          "file_count": 41,
+          "has_subdirs": true
+        },
+        {
+          "folder": "AmaraIverson",
+          "file_count": 38,
+          "has_subdirs": true
+        },
+        {
+          "folder": "BayYardley",
+          "file_count": 22,
+          "has_subdirs": true
+        },
+        {
+          "folder": "CaseyGladstone",
+          "file_count": 16,
+          "has_subdirs": true
+        },
+        {
+          "folder": "CaseyLachlan",
+          "file_count": 13,
+          "has_subdirs": true
+        },
+        {
+          "folder": "CorinMarlowe",
+          "file_count": 13,
+          "has_subdirs": true
+        },
+        {
+          "folder": "CoveCrowther",
+          "file_count": 24,
+          "has_subdirs": true
+        },
+        {
+          "folder": "CovePrescott",
+          "file_count": 20,
+          "has_subdirs": true
+        },
+        {
+          "folder": "DevonMerrow",
+          "file_count": 20,
+          "has_subdirs": true
+        }
+      ]
+    }
+  ],
+  "dir_to_assignment": [
+    {
+      "source_dir": "CIS195_Lab1Submissions",
+      "kind": "lab",
+      "number": 1,
+      "candidate_assignment_ids": [
+        22143
+      ],
+      "candidate_assignment_names": [
+        "Lab 1 Submission"
+      ],
+      "assignment_id": 22143,
+      "assignment_name": "Lab 1 Submission"
+    },
+    {
+      "source_dir": "CIS195_Lab2Submissions",
+      "kind": "lab",
+      "number": 2,
+      "candidate_assignment_ids": [
+        22146
+      ],
+      "candidate_assignment_names": [
+        "Lab 2 Submission"
+      ],
+      "assignment_id": 22146,
+      "assignment_name": "Lab 2 Submission"
+    },
+    {
+      "source_dir": "CIS195_Lab3Submissions",
+      "kind": "lab",
+      "number": 3,
+      "candidate_assignment_ids": [
+        22147
+      ],
+      "candidate_assignment_names": [
+        "Lab 3 Submission"
+      ],
+      "assignment_id": 22147,
+      "assignment_name": "Lab 3 Submission"
+    },
+    {
+      "source_dir": "CIS195_Lab4Submissions",
+      "kind": "lab",
+      "number": 4,
+      "candidate_assignment_ids": [
+        22148
+      ],
+      "candidate_assignment_names": [
+        "Lab 4 Submission"
+      ],
+      "assignment_id": 22148,
+      "assignment_name": "Lab 4 Submission"
+    },
+    {
+      "source_dir": "CIS195_Lab5Submissions",
+      "kind": "lab",
+      "number": 5,
+      "candidate_assignment_ids": [
+        22149
+      ],
+      "candidate_assignment_names": [
+        "Lab 5 Submission"
+      ],
+      "assignment_id": 22149,
+      "assignment_name": "Lab 5 Submission"
+    },
+    {
+      "source_dir": "CIS195_Lab6Submissions",
+      "kind": "lab",
+      "number": 6,
+      "candidate_assignment_ids": [
+        22150
+      ],
+      "candidate_assignment_names": [
+        "Lab 6 Submission"
+      ],
+      "assignment_id": 22150,
+      "assignment_name": "Lab 6 Submission"
+    },
+    {
+      "source_dir": "CIS195_Lab7Submissions",
+      "kind": "lab",
+      "number": 7,
+      "candidate_assignment_ids": [
+        22151
+      ],
+      "candidate_assignment_names": [
+        "Lab 7 Submission"
+      ],
+      "assignment_id": 22151,
+      "assignment_name": "Lab 7 Submission"
+    },
+    {
+      "source_dir": "CIS195_Lab8Submissions",
+      "kind": "lab",
+      "number": 8,
+      "candidate_assignment_ids": [
+        22152,
+        22153,
+        22154
+      ],
+      "candidate_assignment_names": [
+        "Lab 8 Submission",
+        "Lab 8 Submission",
+        "Lab 8 Submission"
+      ],
+      "assignment_id": 22154,
+      "assignment_name": "Lab 8 Submission",
+      "manual_resolution": "Pinned to the only published Lab 8 Submission (22154); other two (22152, 22153) are unpublished duplicates."
+    },
+    {
+      "source_dir": "CIS195_Lab9Submissions",
+      "kind": "lab",
+      "number": 9,
+      "candidate_assignment_ids": [
+        22155
+      ],
+      "candidate_assignment_names": [
+        "Lab 9 Submission"
+      ],
+      "assignment_id": 22155,
+      "assignment_name": "Lab 9 Submission"
+    },
+    {
+      "source_dir": "CIS195_TermProjects",
+      "kind": "term_project",
+      "number": null,
+      "candidate_assignment_ids": [
+        22174
+      ],
+      "candidate_assignment_names": [
+        "Term Project"
+      ],
+      "assignment_id": 22174,
+      "assignment_name": "Term Project"
+    }
+  ],
+  "zip_viable_for_mapped_assignments": true,
+  "resolved_by_user": {
+    "lab_family": "Lab N Submission",
+    "lab8_assignment_id": 22154,
+    "term_project_assignment_id": 22174
+  }
+}
