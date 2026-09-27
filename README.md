@@ -13,6 +13,48 @@ The Python scripts are all built on the connection/credential pattern in `canvas
 
 ---
 
+## Table of Contents
+
+- [🧰 The scripts](#-the-scripts)
+  - [Python (`Python/`)](#python-python)
+  - [Node.js (`Node/`)](#nodejs-node)
+- [🛡️ Safety model](#-safety-model)
+- [🚀 Quick Start](#-quick-start)
+- [📁 Project structure](#-project-structure)
+- [Prerequisites](#prerequisites)
+- [Full Setup with Detailed Instructions](#full-setup-with-detailed-instructions)
+  - [1. Open in Dev Container](#1-open-in-dev-container)
+  - [2. Configure Environment](#2-configure-environment)
+  - [3. Run the Script](#3-run-the-script)
+- [Expected Output](#expected-output)
+- [Running Locally (Optional)](#running-locally-optional)
+- [Finding Your Course ID](#finding-your-course-id)
+  - [Method 1: From the URL (Easiest)](#method-1-from-the-url-easiest)
+  - [Method 2: From Course Settings](#method-2-from-course-settings)
+  - [Method 3: From Canvas Admin](#method-3-from-canvas-admin)
+- [Getting Your Canvas API Token](#getting-your-canvas-api-token)
+- [Writing a new script](#writing-a-new-script)
+- [Canvas API Documentation](#canvas-api-documentation)
+- [Troubleshooting](#troubleshooting)
+- [Common Operations](#common-operations)
+  - [Update Course Name](#update-course-name)
+  - [Get Assignments](#get-assignments)
+  - [Create an Assignment](#create-an-assignment)
+  - [Get Students](#get-students)
+- [Security](#security)
+- [✅ Best Practices](#-best-practices)
+  - [1. Secure Storage](#1-secure-storage)
+  - [2. Never Share Your Token](#2-never-share-your-token)
+  - [3. Set Token Expiration](#3-set-token-expiration)
+  - [4. What To Do If Compromised](#4-what-to-do-if-compromised)
+  - [5. Environment Variable Safety](#5-environment-variable-safety)
+  - [6. Monitor Canvas Audit Logs](#6-monitor-canvas-audit-logs)
+  - [7. Forking This Repository](#7-forking-this-repository)
+- [⚠️ Why This Matters](#-why-this-matters)
+- [🔍 Verification Checklist](#-verification-checklist)
+
+---
+
 # 🧰 The scripts
 
 ### Python (`Python/`)
@@ -129,7 +171,7 @@ Codespaces is recommended — you don't need anything installed locally, just a 
 
 ---
 
-# 2. Configure Environment
+## 2. Configure Environment
 
 ### Option A: Codespaces Secrets (Recommended for Codespaces)
 
@@ -167,7 +209,7 @@ COURSE_ID=123456
 
 ---
 
-# 3. Run the Script
+## 3. Run the Script
 
 ```bash
 python Python/download_course_json.py

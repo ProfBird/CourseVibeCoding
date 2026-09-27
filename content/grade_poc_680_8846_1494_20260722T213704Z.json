@@ -1,0 +1,22 @@
+{
+  "timestamp": "2026-07-22T21:36:24.838043+00:00",
+  "course_id": 680,
+  "assignment_id": 8846,
+  "assignment_name": "Week 2 Assignment",
+  "user_id": 1494,
+  "before": {
+    "grade": "10",
+    "score": 10.0,
+    "workflow_state": "graded"
+  },
+  "proposed_grade": "75",
+  "comment": "Thank you for the submission.",
+  "mode": "live",
+  "after": {
+    "grade": "75",
+    "score": 75.0,
+    "graded_at": "2026-07-22T21:37:04Z",
+    "grader_id": 1087
+  },
+  "result": "success"
+}

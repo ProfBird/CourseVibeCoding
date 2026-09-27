@@ -1,0 +1,14 @@
+[project]
+name = "coursevibecoding"
+version = "0.1.0"
+description = "Canvas LMS course maintenance scripts"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "canvasapi==3.2.0",
+    "python-dotenv==1.0.0",
+    "markdown==3.10.2",
+]
+
+[tool.uv]
+package = false
